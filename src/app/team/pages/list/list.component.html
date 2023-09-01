@@ -1,0 +1,54 @@
+<app-navbar>
+</app-navbar>
+
+<section class="teams">
+
+    <div class="teams__filters">
+        <div class="teams__filters">
+            <div class="teams__filter">
+                <p>Buscar por ID: </p>
+                <p-inputNumber inputId="integeronly" [(ngModel)]="teamID" (ngModelChange)="updateIDTeam($event)"> </p-inputNumber>
+            </div>
+            <div class="teams__filter">
+                <p>Buscar por Fecha: </p>
+                <p-calendar [(ngModel)]="rangeDates" selectionMode="range" (ngModelChange)="updateDates($event)" [showButtonBar]="true"></p-calendar>
+            </div>
+
+        </div>
+    </div>
+    <div class="teams__container" *ngIf="teamsResponse.content; else isEmpty">
+        <p-card *ngFor="let team of teamsResponse.content; let i = index; trackBy:identify;" header="{{team.nombre}}" [style]="{ width: '360px' }">
+            <ng-template pTemplate="header">
+                <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
+            </ng-template>
+            <b>ID: {{team.id}}</b>
+            <ul>
+                <li>
+                    <b>Estadio: </b>{{team.estadio}}
+                </li>
+                <li>
+                    <b>Sitio Web: </b>{{team.sitioWeb}}
+                </li>
+                <li>
+                    <b>Nacionalidad: </b>{{team.nacionalidad}}
+                </li>
+                <li>
+                    <b>Fundación: </b>{{team.fundacion | date}}
+                </li>
+                <li>
+                    <b>Entrenador: </b>{{team.entrenador}}
+                </li>
+                <li>
+                    <b>Capacidad: </b>{{team.capacidad | number}}
+                </li>
+                <li>
+                    <b>Valor: </b>{{team.valor | currency}}
+                </li>
+            </ul>
+        </p-card>
+    </div>
+
+    <ng-template #isEmpty>
+        No se encuentra nada
+    </ng-template>
+</section>

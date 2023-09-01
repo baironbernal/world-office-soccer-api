@@ -1,0 +1,53 @@
+<app-navbar>
+</app-navbar>
+
+<section class="container_form">
+    <form class="flex flex-column align-items-center gap-3" [formGroup]="teamForm" (ngSubmit)="createTeam()">
+        <div class="flex flex-column gap-2">
+            <label htmlFor="nombre">Nombre</label>
+            <input pInputText id="nombre" aria-describedby="nombre-help" formControlName="nombre" />
+            <small id="nombre-help">Enter your nombre to reset your password.</small>
+        </div>
+        <div class="flex flex-column gap-2">
+            <label htmlFor="estadio">Estadio</label>
+            <input pInputText id="estadio" aria-describedby="estadio-help" formControlName="estadio" />
+            <small id="estadio-help">Enter your nombre to reset your password.</small>
+        </div>
+        <div class="flex flex-column gap-2">
+            <label htmlFor="sitioWeb">Sitio Web</label>
+            <input pInputText id="sitioWeb" aria-describedby="sitioWeb-help" formControlName="sitioWeb" />
+            <small id="sitioWeb-help">Enter your nombre to reset your password.</small>
+        </div>
+        <div class="flex flex-column gap-2">
+            <label htmlFor="nacionalidad">Nacionalidad</label>
+            <input pInputText id="nacionalidad" aria-describedby="nacionalidad-help" formControlName="nacionalidad" />
+            <small id="nacionalidad-help">Enter your nombre to reset your password.</small>
+        </div>
+        <div class="flex flex-column gap-2">
+            <label htmlFor="fundacion">Fundacion</label>
+            <p-calendar formControlName="date"></p-calendar>
+            <small id="fundacion-help">Enter your nombre to reset your password.</small>
+        </div>
+        <div class="flex flex-column gap-2">
+            <label htmlFor="entrenador">Entrenador</label>
+            <input pInputText id="entrenador" aria-describedby="entrenador-help" formControlName="entrenador" />
+            <small id="entrenador-help">Enter your nombre to reset your password.</small>
+        </div>
+        <div class="flex flex-column gap-2">
+            <label htmlFor="capacidad">Capacidad</label>
+            <p-inputNumber inputId="capacidad" formControlName="capacidad"></p-inputNumber>¿
+            <small id="capacidad-help">Enter your nombre to reset your password.</small>
+        </div>
+
+        <div class="flex flex-column gap-2">
+            <label htmlFor="valor">Valor</label>
+            <p-inputNumber formControlName="valor" inputId="currency-us" mode="currency" currency="USD" locale="en-US"> </p-inputNumber>
+            <small id="valor-help">Enter your nombre to reset your password.</small>
+        </div>
+
+        <div class="card flex justify-content-center">
+            <p-button label="Submit"></p-button>
+        </div>
+
+    </form>
+</section>

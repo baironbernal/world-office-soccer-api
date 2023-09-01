@@ -1,0 +1,19 @@
+.teams {
+    padding: 4rem;
+    color: white !important;
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 4rem;
+        align-items: center;
+    }
+    &__filters {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+}

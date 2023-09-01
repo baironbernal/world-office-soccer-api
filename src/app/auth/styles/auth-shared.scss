@@ -1,0 +1,46 @@
+.register-container,
+.login-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &__titles {
+        text-align: center;
+        h1 {
+            font-size: 40px;
+            color: white;
+        }
+        h3 {
+            color: aqua;
+        }
+        h2 {
+            color: white;
+        }
+    }
+    &__form {
+        input {
+            background-color: transparent;
+            border: 0;
+            border-bottom: 2px solid white;
+            color: white;
+            outline: none;
+            padding: 10px 0;
+            width: 100%;
+        }
+        div {
+            width: 300px;
+            padding: 20px 0px;
+            span {
+                color: red
+            }
+        }
+        p {
+            font-size: 20px;
+            margin: 0;
+        }
+        button {
+            text-align: center;
+        }
+    }
+}

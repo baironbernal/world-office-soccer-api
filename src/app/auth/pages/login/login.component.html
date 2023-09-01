@@ -1,0 +1,33 @@
+<div class="login-container">
+    <img src="assets/login/portrait.png" alt="" class="loginForm__portrait">
+    <div class="login-container__titles">
+        <h1>Easy Media</h1>
+        <h3>Now share is easy</h3>
+        <h2>Sign In</h2>
+
+    </div>
+    <form class="login-container__form" [formGroup]="loginForm" (ngSubmit)="login()">
+        <div>
+            <p>Email</p>
+            <input type="text" formControlName="email">
+            <span *ngIf="formSubmitted && this.loginForm.get('email')?.errors?.['required']">
+        (El email no puede quedar vacío)
+      </span>
+            <span *ngIf="formSubmitted && this.loginForm.get('email')?.errors?.['eemail']">
+        (El email no es válido)
+      </span>
+        </div>
+        <div>
+            <p>Contraseña</p><br>
+            <input type="password" formControlName="password">
+            <span *ngIf="formSubmitted && this.loginForm.get('password')?.errors?.['required']">
+                (El password no puede quedar vacío)
+            </span>
+            <span *ngIf="formSubmitted && this.loginForm.get('password')?.errors?.['maxlength']">
+                (Debe tener como máximo 500 caracteres)
+            </span>
+        </div>
+        <button type="submit">LOGIN</button>
+
+    </form>
+</div>
