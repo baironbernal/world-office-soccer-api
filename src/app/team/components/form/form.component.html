@@ -1,0 +1,48 @@
+<form class="flex flex-column align-items-center gap-3" [formGroup]="teamForm" (ngSubmit)="onSubmit()">
+    <div class="flex flex-column gap-2">
+        <label htmlFor="nombre">Nombre</label>
+        <input pInputText id="nombre" aria-describedby="nombre-help" formControlName="nombre" />
+        <small *ngIf="formSubmitted && this.teamForm.controls['nombre'].invalid" id="nombre-help">El campo nombre no puede estar vacio</small>
+    </div>
+    <div class="flex flex-column gap-2">
+        <label htmlFor="estadio">Estadio</label>
+        <input pInputText id="estadio" aria-describedby="estadio-help" formControlName="estadio" />
+        <small *ngIf="formSubmitted && this.teamForm.controls['estadio'].invalid" id="estadio-help">El campo estadio no puede estar vacio</small>
+    </div>
+    <div class="flex flex-column gap-2">
+        <label htmlFor="sitioWeb">Sitio Web</label>
+        <input pInputText id="sitioWeb" aria-describedby="sitioWeb-help" formControlName="sitioWeb" />
+        <small *ngIf="formSubmitted && this.teamForm.controls['sitioWeb'].invalid" id="sitioWeb-help">El campo sitioWeb no puede estar vacio</small>
+    </div>
+    <div class="flex flex-column gap-2">
+        <label htmlFor="nacionalidad">Nacionalidad</label>
+        <input pInputText id="nacionalidad" aria-describedby="nacionalidad-help" formControlName="nacionalidad" />
+        <small *ngIf="formSubmitted && this.teamForm.controls['nacionalidad'].invalid" id="nacionalidad-help">El campo nacionalidad no puede estar vacio</small>
+    </div>
+    <div class="flex flex-column gap-2">
+        <label htmlFor="fundacion">Fundacion</label>
+        <p-calendar formControlName="fundacion"></p-calendar>
+        <small *ngIf="formSubmitted && this.teamForm.controls['fundacion'].invalid" id="fundacion-help">El campo fundacion no puede estar vacio</small>
+    </div>
+    <div class="flex flex-column gap-2">
+        <label htmlFor="entrenador">Entrenador</label>
+        <input pInputText id="entrenador" aria-describedby="entrenador-help" formControlName="entrenador" />
+        <small *ngIf="formSubmitted && this.teamForm.controls['entrenador'].invalid" id="entrenador-help">El campo entrenador no puede estar vacio</small>
+    </div>
+    <div class="flex flex-column gap-2">
+        <label htmlFor="capacidad">Capacidad</label>
+        <p-inputNumber inputId="capacidad" formControlName="capacidad"></p-inputNumber>
+        <small *ngIf="formSubmitted && this.teamForm.controls['capacidad'].invalid" id="capacidad-help">El campo capacidad no puede estar vacio</small>
+    </div>
+
+    <div class="flex flex-column gap-2">
+        <label htmlFor="valor">Valor</label>
+        <p-inputNumber formControlName="valor" inputId="currency-us" mode="currency" currency="USD" locale="en-US"> </p-inputNumber>
+        <small *ngIf="formSubmitted && this.teamForm.controls['valor'].invalid" id="valor-help">El campo valor no puede estar vacio</small>
+    </div>
+
+    <div class="card flex justify-content-center">
+        <p-button *ngIf="isAddMode" label="Crear" type="submit"></p-button>
+        <p-button *ngIf="!isAddMode" label="Actualizar" type="submit"></p-button>
+    </div>
+</form>

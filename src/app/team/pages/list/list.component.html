@@ -7,12 +7,15 @@
         <div class="teams__filters">
             <div class="teams__filter">
                 <p>Buscar por ID: </p>
-                <p-inputNumber inputId="integeronly" [(ngModel)]="teamID" (ngModelChange)="updateIDTeam($event)"> </p-inputNumber>
+                <p-inputNumber inputId="integeronly" (ngModelChange)="searchById($event)" [(ngModel)]="teamID"> </p-inputNumber>
             </div>
             <div class="teams__filter">
                 <p>Buscar por Fecha: </p>
                 <p-calendar [(ngModel)]="rangeDates" selectionMode="range" (ngModelChange)="updateDates($event)" [showButtonBar]="true"></p-calendar>
             </div>
+
+
+
 
         </div>
     </div>
@@ -45,6 +48,10 @@
                     <b>Valor: </b>{{team.valor | currency}}
                 </li>
             </ul>
+            <div class="card flex flex-wrap gap-3 justify-content-center">
+                <p-button label="Editar" icon="pi pi-pencil" routerLink="/team/edit/{{team.id}}" styleClass="p-button-raised p-button-warning"></p-button>
+                <p-button label="Borrar" icon="pi pi-trash" (onClick)="deleteById(team.id)" styleClass="p-button-raised p-button-danger"></p-button>
+            </div>
         </p-card>
     </div>
 

@@ -1,33 +1,20 @@
-<div class="login-container">
-    <img src="assets/login/portrait.png" alt="" class="loginForm__portrait">
-    <div class="login-container__titles">
-        <h1>Easy Media</h1>
-        <h3>Now share is easy</h3>
-        <h2>Sign In</h2>
-
-    </div>
-    <form class="login-container__form" [formGroup]="loginForm" (ngSubmit)="login()">
-        <div>
-            <p>Email</p>
-            <input type="text" formControlName="email">
-            <span *ngIf="formSubmitted && this.loginForm.get('email')?.errors?.['required']">
-        (El email no puede quedar vacío)
-      </span>
-            <span *ngIf="formSubmitted && this.loginForm.get('email')?.errors?.['eemail']">
-        (El email no es válido)
-      </span>
+<div class="login flex flex-column align-items-center gap-3">
+    <h1>Login Soccer</h1>
+    <img src="https://wallpaperaccess.com/full/562943.jpg" alt="balon">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="flex flex-column gap-2">
+            <label htmlFor="nombre">username</label>
+            <input pInputText id="username" aria-describedby="username-help" formControlName="username" />
+            <small *ngIf="formSubmitted && this.loginForm.controls['username'].invalid" id="username-help">El campo nombre no puede estar vacio</small>
         </div>
-        <div>
-            <p>Contraseña</p><br>
-            <input type="password" formControlName="password">
-            <span *ngIf="formSubmitted && this.loginForm.get('password')?.errors?.['required']">
-                (El password no puede quedar vacío)
-            </span>
-            <span *ngIf="formSubmitted && this.loginForm.get('password')?.errors?.['maxlength']">
-                (Debe tener como máximo 500 caracteres)
-            </span>
+        <div class="flex flex-column gap-2">
+            <label htmlFor="password">password</label>
+            <input pInputText id="password" aria-describedby="password-help" formControlName="password" />
+            <small *ngIf="formSubmitted && this.loginForm.controls['password'].invalid" id="password-help">El campo password no puede estar vacio</small>
         </div>
-        <button type="submit">LOGIN</button>
-
+        <br>
+        <div class="card flex justify-content-center">
+            <p-button label="Ingresar" type="submit"></p-button>
+        </div>
     </form>
 </div>

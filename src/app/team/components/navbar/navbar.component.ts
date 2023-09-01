@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,25 +8,27 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
 
+  constructor(private authService:AuthService){}
+
   items:{label: string, routerLink: string,icon: string }[] = [];
 
   ngOnInit() {
     this.items = [
       {
-        label: 'Teams',
+        label: 'Equipos',
         routerLink: "/team/all",
         icon: 'pi pi-fw pi-circle'
     },
     {
-      label: 'Create Team',
-      routerLink: "/team/create",
-      icon: 'pi pi-fw pi-plus'
-  },
-  ];
+          label: 'Crear Equipo',
+          routerLink: "/team/create",
+          icon: 'pi pi-fw pi-plus'
+      }
+    ];
   }
 
   logOut() {
-    localStorage.removeItem('token-bfbernalgo');
+    this.authService.logOut();
   }
 
 }

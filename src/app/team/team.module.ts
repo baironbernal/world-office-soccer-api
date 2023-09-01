@@ -16,12 +16,17 @@ import { CalendarModule } from 'primeng/calendar';
 //Reactive Forms
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { FormComponent } from './components/form/form.component';
+import { EditComponent } from './pages/edit/edit.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     ListComponent,
-    CreateComponent
+    CreateComponent,
+    FormComponent,
+    EditComponent
   ],
   imports: [
     CommonModule,
@@ -32,6 +37,7 @@ import { InputTextModule } from 'primeng/inputtext';
     InputNumberModule,
     CalendarModule,
     InputTextModule,
+    ButtonModule,
     //Forms
     FormsModule,
     ReactiveFormsModule
