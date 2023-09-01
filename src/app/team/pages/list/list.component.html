@@ -45,6 +45,10 @@
                     <b>Valor: </b>{{team.valor | currency}}
                 </li>
             </ul>
+            <div class="card flex flex-wrap gap-3 justify-content-center">
+                <p-button label="Edit" icon="pi pi-pencil" routerLink="/team/edit/{{team.id}}" styleClass="p-button-raised p-button-warning"></p-button>
+                <p-button label="Borrar" icon="pi pi-trash" (onClick)="deleteById(team.id)" styleClass="p-button-raised p-button-danger"></p-button>
+            </div>
         </p-card>
     </div>
 

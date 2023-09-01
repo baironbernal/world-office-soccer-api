@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { LoginForm } from '../interfaces/login-form.interface';
-import { Observable, of, tap } from 'rxjs';
+import { Observable, Subscription, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.development';
 
@@ -12,6 +12,9 @@ import { environment } from 'src/environments/environment.development';
 export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) { }
+
+  suscription: Subscription= new Subscription;
+
 
   validateToken(): Observable<boolean> {
     const token = localStorage.getItem('token-bfbernalgo');
@@ -24,18 +27,22 @@ export class AuthService {
   }
 
   login(formData: LoginForm) {
-    return this.http.post(environment.base_url + '/login', formData)
-        .pipe(
-          tap((resp: any) => {
-            console.log(resp)
-            localStorage.setItem('token-bfbernalgo', resp.token)
-          })
-        );
+
+    if (formData.username === 'cualquiera' && formData.password === 'cualquiera') {
+      localStorage.setItem('token-bfbernalgo', 'TOKEN-VALIDO');
+      return true;
+    }
+
+    return false;
   }
 
   logOut() {
     localStorage.removeItem('token-bfbernalgo');
-    this.router.navigateByUrl('/auth/login');
+    return this.router.navigateByUrl('/auth/login');
+  }
+
+  ngOnDestroy(){
+    this.suscription.unsubscribe();
   }
 
 }
