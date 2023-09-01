@@ -17,7 +17,7 @@ export class TeamService {
   }
 
   getTeamById(id: number) {
-    return this.http.get<ApiTeamResponse>(environment.base_url + 'consultar/' + id);
+    return this.http.get<Content>(environment.base_url + 'consultar/' + id);
   }
 
   updateTeam(id:number, team: Content): Observable<ApiTeamResponse> {

@@ -42,6 +42,7 @@
     </div>
 
     <div class="card flex justify-content-center">
-        <p-button label="Crear" type="submit"></p-button>
+        <p-button *ngIf="isAddMode" label="Crear" type="submit"></p-button>
+        <p-button *ngIf="!isAddMode" label="Actualizar" type="submit"></p-button>
     </div>
 </form>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Content } from '../../interfaces/content.interface';
 import { ApiTeamResponse } from '../../interfaces/api-response.interface';
-import { Subscription, range } from 'rxjs';
+import { Subscription, debounceTime, distinctUntilChanged, pipe, throwError } from 'rxjs';
 import { TeamService } from '../../services/team-service.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
@@ -21,10 +21,15 @@ export class ListComponent {
   rangeDates: Date[] | undefined;
   suscription: Subscription = new Subscription;
 
-  constructor(private teamService: TeamService,  private router: Router,) {}
+  constructor(private teamService: TeamService,  private router: Router) {}
 
   ngOnInit() {
     this.getAllTeams()
+  }
+
+  getAllTeams() {
+    this.suscription = this.teamService.getTeams(this.pagination)
+      .subscribe(data => this.teamsResponse = data);
   }
 
   identify(index: number, item: Content) {
@@ -39,10 +44,6 @@ export class ListComponent {
     });
 
     return newDates;
-  }
-
-  editTeam(id: number) {
-
   }
 
   deleteById(id: number) {
@@ -65,15 +66,27 @@ export class ListComponent {
     }
   }
 
-  updateIDTeam(value: number) {
+  searchById(value: number) {
+
+    if(!value) {
+      return this.getAllTeams();
+    }
+
       this.suscription = this.teamService.getTeamById(value)
-      .subscribe(data => this.teamsResponse = data);
+      .pipe(
+        debounceTime(3000),
+        distinctUntilChanged()
+      )
+      .subscribe(
+        (data) => {
+          this.teamsResponse.content = [data]
+        },
+        (error)=> {
+          return throwError(error);
+        });
   }
 
-  getAllTeams() {
-    this.suscription = this.teamService.getTeams(this.pagination)
-      .subscribe(data => this.teamsResponse = data);
-  }
+
 
   ngOnDestroy(){
     this.suscription.unsubscribe();

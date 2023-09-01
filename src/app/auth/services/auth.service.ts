@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
 import { LoginForm } from '../interfaces/login-form.interface';
 import { Observable, Subscription, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -26,10 +25,18 @@ export class AuthService {
 
   }
 
+  rand() {
+    return Math.random().toString(36).substr(2);
+  }
+
+  createRandomToken() {
+    return this.rand() + this.rand() + this.rand() + "-" + this.rand() + this.rand() + this.rand(); // to make it longer
+  }
+
   login(formData: LoginForm) {
 
     if (formData.username === 'cualquiera' && formData.password === 'cualquiera') {
-      localStorage.setItem('token-bfbernalgo', 'TOKEN-VALIDO');
+      localStorage.setItem('token-bfbernalgo', this.createRandomToken());
       return true;
     }
 
